@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
     "playwright-core",
     "@sparticuz/chromium",
   ],
+
+  outputFileTracingIncludes: {
+    "/*": ["./node_modules/playwright-core/**/*"],
+  },
 };
 
 export default nextConfig;
