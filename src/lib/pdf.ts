@@ -22,22 +22,21 @@ export const PDF_CONCURRENCY = process.env.VERCEL === "1" ? 3 : 5;
  */
 async function launchBrowser(): Promise<Browser> {
   if (process.env.VERCEL === "1") {
-    // Production / Vercel
-    const { chromium: playwrightChromium } = await import("playwright-core");
+    const [{ chromium: playwrightChromium }, chromium] = await Promise.all([
+      import("playwright-core"),
+      import("@sparticuz/chromium"),
+    ]);
 
-    const chromium = (await import("@sparticuz/chromium")).default;
-
-    return await playwrightChromium.launch({
-      args: chromium.args,
-      executablePath: await chromium.executablePath(),
+    return playwrightChromium.launch({
+      args: chromium.default.args,
+      executablePath: await chromium.default.executablePath(),
       headless: true,
     });
   }
 
-  // Local development
   const { chromium } = await import("playwright");
 
-  return await chromium.launch({
+  return chromium.launch({
     headless: true,
   });
 }

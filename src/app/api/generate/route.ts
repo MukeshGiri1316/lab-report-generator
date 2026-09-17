@@ -4,8 +4,12 @@ import { generateAllPdfs } from "@/lib/pdf";
 import { createZip, makePdfFilename } from "@/lib/zip";
 import { z } from "zod";
 
+export const runtime = "nodejs";
+
 // Validate the request body as an array of patients
-const RequestSchema = z.array(PatientSchema).min(1, "At least one patient is required");
+const RequestSchema = z
+  .array(PatientSchema)
+  .min(1, "At least one patient is required");
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,7 +23,7 @@ export async function POST(request: NextRequest) {
           error: "Invalid patient data",
           details: parseResult.error.issues.map((i) => i.message),
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -33,7 +37,11 @@ export async function POST(request: NextRequest) {
     // Start the generation in the background
     (async () => {
       const pdfEntries: { filename: string; buffer: Buffer }[] = [];
-      const failures: { patientId: string; patientName: string; error: string }[] = [];
+      const failures: {
+        patientId: string;
+        patientName: string;
+        error: string;
+      }[] = [];
       let generated = 0;
       let failed = 0;
 
@@ -115,7 +123,7 @@ export async function POST(request: NextRequest) {
     const errorMsg = err instanceof Error ? err.message : String(err);
     return Response.json(
       { error: `Server error: ${errorMsg}` },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
