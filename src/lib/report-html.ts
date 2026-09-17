@@ -62,8 +62,8 @@ export function renderReportHtml(patient: Patient): string {
     .pi-colon { text-align: center; }
 
     /* Barcode */
-    .barcode-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1mm; }
-    .barcode-row img { max-height: 15mm; }
+    .barcode-row { display: flex; justify-content: space-between; align-items: center; margin: 3mm 0; }
+    .barcode-row img { max-height: 14mm; }
 
     /* Tables */
     .section-title {

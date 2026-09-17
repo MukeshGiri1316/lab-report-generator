@@ -18,13 +18,13 @@ export default function Footer({
       <div className="flex justify-end pt-[8mm]">
 
         {/* Dr. Deepa Upadhyay */}
-        <div className="w-[30mm] text-center">
+        <div className="w-[28mm] text-center">
           <img src="/report-images/image4.png" alt="sign1" />
         </div>
 
 
         {/* Dr. Anurag Gupta */}
-        <div className="ml-[12mm] w-[30mm] text-center">
+        <div className="ml-[12mm] w-[28mm] text-center">
           <img src="/report-images/image5.png" alt="sign2" />
         </div>
 
@@ -42,7 +42,7 @@ export default function Footer({
             px-[1mm]
             pb-[1mm]
             text-center
-            text-[11pt]
+            text-[9pt]
             font-bold
           "
         >
